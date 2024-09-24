@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/static/js/comments.js"></script>
+</head>
+<body>
+<h2>{{ post.title }}</h2>
+<p>{{ post.content }}</p>
+
+<input type="text" id="comment">
+<button id="sendComment" data-url = "{{ url_for('post_add_comment', id=post.id) }}">Send</button>
+
+
+
+
+
+<!--атрибут дата зберігає дані в тегу-->
+
+<div id="comments">
+  {% for c in comments %}
+
+        <p id="{{ c.id }}"> {{ c.text }} <button class="btnDelete" data-url="{{ url_for('post_delete_comment', id=c.id) }}">Delete</button>
+        </p>
+
+<!--вивід тексту коментаря-->
+    {% endfor %}
+</div>
+
+</body>
+</html>
